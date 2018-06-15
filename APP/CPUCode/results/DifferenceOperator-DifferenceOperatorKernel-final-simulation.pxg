@@ -1,0 +1,1597 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Graph version="2015.2" pxg_version="1" maxfile_name="DifferenceOperator" design_name="DifferenceOperatorKernel" compilation_phase="final-simulation" has_longest_path="false">
+	<Node group="[]" id="96" isControl="true" isVisible="false" pipelineFactor="1.0" type="NodeInputMappedReg">
+		<Output latency="0" name="io_outImage_force_disabled" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Scalar input (io_outImage_force_disabled)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:56)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Name>io_outImage_force_disabled</Name>
+	</Node>
+	<Edge dst_node_id="97" dst_node_input="a" src_node_id="96" src_node_output="io_outImage_force_disabled" />
+	<Node group="[]" id="97" isControl="true" isVisible="false" pipelineFactor="0.0" type="NodeNot">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>~</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:56)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="99" dst_node_input="output_control" src_node_id="97" src_node_output="result" />
+	<Node group="[]" id="3" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:1, 0, UNSIGNED}\n0x1; 1.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Count.makeCounterChain(Count.java:498)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:22)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Value>1</Value>
+		<HexValue>0x1</HexValue>
+		<NumericValue>1.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="8" dst_node_input="enable" src_node_id="3" src_node_output="value" />
+	<Node group="[]" id="210" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(9, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:9, 0, UNSIGNED}\n0x100; 256.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.CounterChain.addCounter(CounterChain.java:504)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:24)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Value>100000000</Value>
+		<HexValue>0x100</HexValue>
+		<NumericValue>256.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="8" dst_node_input="max" src_node_id="210" src_node_output="value" />
+	<Node group="[]" id="8" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeCounterV1">
+		<Input name="enable" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="max" type="dfeOffsetFix(9, 0, UNSIGNED)" />
+		<Output latency="0" name="count" type="dfeOffsetFix(8, 0, UNSIGNED)" />
+		<Output latency="0" name="wrap" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Counter(NUMERIC_INCREMENTING)\nInc: 1\nReset: 0\nInit: 0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.CounterChain.addCounter(CounterChain.java:504)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:24)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Increment>1</Increment>
+		<WrapValue>0</WrapValue>
+		<InitValue>0</InitValue>
+		<CountMode>NUMERIC_INCREMENTING</CountMode>
+		<WrapMode>COUNT_LT_MAX_THEN_WRAP</WrapMode>
+	</Node>
+	<Edge dst_node_id="9" dst_node_input="i" src_node_id="8" src_node_output="count" />
+	<Edge dst_node_id="5" dst_node_input="enable" src_node_id="8" src_node_output="wrap" />
+	<Node group="[]" id="9" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeCast">
+		<Input name="i" type="dfeOffsetFix(8, 0, UNSIGNED)" />
+		<Output latency="0" name="o" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>{HWOffsetFix:32, 0, TWOSCOMPLEMENT}</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.cast(DFEVar.java:173)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:24)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="20" dst_node_input="a" src_node_id="9" src_node_output="o" />
+	<Edge dst_node_id="22" dst_node_input="a" src_node_id="9" src_node_output="o" />
+	<Node group="[]" id="209" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>{HWOffsetFix:32, 0, TWOSCOMPLEMENT}\n0x000000ff; 255.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.eq(DFEVar.java:597)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:39)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Value>00000000000000000000000011111111</Value>
+		<HexValue>0x000000ff</HexValue>
+		<NumericValue>255.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="22" dst_node_input="b" src_node_id="209" src_node_output="value" />
+	<Node group="[]" id="22" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeEq">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>==</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.eq(DFEVar.java:597)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:39)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="115" dst_node_input="input" src_node_id="22" src_node_output="result" />
+	<Node group="[]" id="115" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="10" name="output" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>FIFO(10)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="69" dst_node_input="a" src_node_id="115" src_node_output="output" />
+	<Edge dst_node_id="172" dst_node_input="input" src_node_id="115" src_node_output="output" />
+	<Node group="[]" id="172" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="3" name="output" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>FIFO(3)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="86" dst_node_input="a" src_node_id="172" src_node_output="output" />
+	<Edge dst_node_id="173" dst_node_input="input" src_node_id="172" src_node_output="output" />
+	<Node group="[]" id="208" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(9, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:9, 0, UNSIGNED}\n0x100; 256.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.CounterChain.addCounter(CounterChain.java:504)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:23)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Value>100000000</Value>
+		<HexValue>0x100</HexValue>
+		<NumericValue>256.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="5" dst_node_input="max" src_node_id="208" src_node_output="value" />
+	<Node group="[]" id="5" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeCounterV1">
+		<Input name="enable" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="max" type="dfeOffsetFix(9, 0, UNSIGNED)" />
+		<Output latency="0" name="count" type="dfeOffsetFix(8, 0, UNSIGNED)" />
+		<Output latency="0" name="wrap" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Counter(NUMERIC_INCREMENTING)\nInc: 1\nReset: 0\nInit: 0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.CounterChain.addCounter(CounterChain.java:504)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:23)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Increment>1</Increment>
+		<WrapValue>0</WrapValue>
+		<InitValue>0</InitValue>
+		<CountMode>NUMERIC_INCREMENTING</CountMode>
+		<WrapMode>COUNT_LT_MAX_THEN_WRAP</WrapMode>
+	</Node>
+	<Edge dst_node_id="6" dst_node_input="i" src_node_id="5" src_node_output="count" />
+	<Node group="[]" id="6" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeCast">
+		<Input name="i" type="dfeOffsetFix(8, 0, UNSIGNED)" />
+		<Output latency="0" name="o" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>{HWOffsetFix:32, 0, TWOSCOMPLEMENT}</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.cast(DFEVar.java:173)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:23)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="24" dst_node_input="a" src_node_id="6" src_node_output="o" />
+	<Edge dst_node_id="26" dst_node_input="a" src_node_id="6" src_node_output="o" />
+	<Node group="[]" id="207" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>{HWOffsetFix:32, 0, TWOSCOMPLEMENT}\n0x000000ff; 255.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.eq(DFEVar.java:597)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:41)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Value>00000000000000000000000011111111</Value>
+		<HexValue>0x000000ff</HexValue>
+		<NumericValue>255.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="26" dst_node_input="b" src_node_id="207" src_node_output="value" />
+	<Node group="[]" id="26" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeEq">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>==</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.eq(DFEVar.java:597)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:41)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="118" dst_node_input="input" src_node_id="26" src_node_output="result" />
+	<Node group="[]" id="118" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="4" name="output" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>FIFO(4)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="44" dst_node_input="b" src_node_id="118" src_node_output="output" />
+	<Edge dst_node_id="174" dst_node_input="input" src_node_id="118" src_node_output="output" />
+	<Node group="[]" id="174" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="9" name="output" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>FIFO(9)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="86" dst_node_input="b" src_node_id="174" src_node_output="output" />
+	<Edge dst_node_id="68" dst_node_input="sel" src_node_id="174" src_node_output="output" />
+	<Node group="[]" id="86" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeOr">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="b" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>|</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.or(DFEVar.java:418)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:54)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="170" dst_node_input="input" src_node_id="86" src_node_output="result" />
+	<Node group="[]" id="170" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="8" name="output" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>FIFO(8)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="94" dst_node_input="sel" src_node_id="170" src_node_output="output" />
+	<Node group="[]" id="173" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="6" name="output" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>FIFO(6)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="85" dst_node_input="sel" src_node_id="173" src_node_output="output" />
+	<Node group="[]" id="206" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>{HWOffsetFix:32, 0, TWOSCOMPLEMENT}\n0x00000000; 0.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.eq(DFEVar.java:597)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:40)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Value>00000000000000000000000000000000</Value>
+		<HexValue>0x00000000</HexValue>
+		<NumericValue>0.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="24" dst_node_input="b" src_node_id="206" src_node_output="value" />
+	<Node group="[]" id="24" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeEq">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>==</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.eq(DFEVar.java:597)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:40)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="29" dst_node_input="b" src_node_id="24" src_node_output="result" />
+	<Edge dst_node_id="116" dst_node_input="input" src_node_id="24" src_node_output="result" />
+	<Node group="[]" id="116" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="10" name="output" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>FIFO(10)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="69" dst_node_input="b" src_node_id="116" src_node_output="output" />
+	<Edge dst_node_id="60" dst_node_input="sel" src_node_id="116" src_node_output="output" />
+	<Node group="[]" id="69" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeOr">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="b" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>|</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.or(DFEVar.java:418)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:52)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="156" dst_node_input="input" src_node_id="69" src_node_output="result" />
+	<Node group="[]" id="156" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="5" name="output" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>FIFO(5)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="77" dst_node_input="sel" src_node_id="156" src_node_output="output" />
+	<Node group="[]" id="205" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>{HWOffsetFix:32, 0, TWOSCOMPLEMENT}\n0x00000000; 0.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.eq(DFEVar.java:597)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:38)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Value>00000000000000000000000000000000</Value>
+		<HexValue>0x00000000</HexValue>
+		<NumericValue>0.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="20" dst_node_input="b" src_node_id="205" src_node_output="value" />
+	<Node group="[]" id="20" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeEq">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>==</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.eq(DFEVar.java:597)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:38)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="29" dst_node_input="a" src_node_id="20" src_node_output="result" />
+	<Edge dst_node_id="117" dst_node_input="input" src_node_id="20" src_node_output="result" />
+	<Node group="[]" id="117" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="4" name="output" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>FIFO(4)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="44" dst_node_input="a" src_node_id="117" src_node_output="output" />
+	<Edge dst_node_id="43" dst_node_input="sel" src_node_id="117" src_node_output="output" />
+	<Node group="[]" id="44" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeOr">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="b" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>|</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.or(DFEVar.java:418)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:47)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="136" dst_node_input="input" src_node_id="44" src_node_output="result" />
+	<Node group="[]" id="136" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="2" name="output" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>FIFO(2)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="52" dst_node_input="sel" src_node_id="136" src_node_output="output" />
+	<Node group="[]" id="29" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeOr">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="b" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>|</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.or(DFEVar.java:418)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:45)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="35" dst_node_input="sel" src_node_id="29" src_node_output="result" />
+	<Node group="[]" id="0" isControl="true" isVisible="false" pipelineFactor="1.0" type="NodeInputMappedReg">
+		<Output latency="0" name="io_inImage_force_disabled" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Scalar input (io_inImage_force_disabled)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:20)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Name>io_inImage_force_disabled</Name>
+	</Node>
+	<Edge dst_node_id="1" dst_node_input="a" src_node_id="0" src_node_output="io_inImage_force_disabled" />
+	<Node group="[]" id="1" isControl="true" isVisible="false" pipelineFactor="0.0" type="NodeNot">
+		<Input name="a" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="0" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>~</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:20)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="2" dst_node_input="enable" src_node_id="1" src_node_output="result" />
+	<Node group="[]" id="2" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeInput">
+		<Input name="enable" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Output latency="5" name="data" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>Input(inImage)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.input(IO.java:606)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:20)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Name>inImage</Name>
+	</Node>
+	<Edge dst_node_id="16" dst_node_input="input" src_node_id="2" src_node_output="data" />
+	<Edge dst_node_id="158" dst_node_input="input" src_node_id="2" src_node_output="data" />
+	<Node group="[]" id="158" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="2" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(2)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="17" dst_node_input="input" src_node_id="158" src_node_output="output" />
+	<Edge dst_node_id="175" dst_node_input="input" src_node_id="158" src_node_output="output" />
+	<Node group="[]" id="175" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="2" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(2)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="18" dst_node_input="input" src_node_id="175" src_node_output="output" />
+	<Edge dst_node_id="176" dst_node_input="input" src_node_id="175" src_node_output="output" />
+	<Node group="[]" id="176" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="238" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(238)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="30" dst_node_input="b" src_node_id="176" src_node_output="output" />
+	<Edge dst_node_id="177" dst_node_input="input" src_node_id="176" src_node_output="output" />
+	<Node group="[]" id="177" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="36" dst_node_input="b" src_node_id="177" src_node_output="output" />
+	<Edge dst_node_id="178" dst_node_input="input" src_node_id="177" src_node_output="output" />
+	<Node group="[]" id="178" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="45" dst_node_input="b" src_node_id="178" src_node_output="output" />
+	<Edge dst_node_id="179" dst_node_input="input" src_node_id="178" src_node_output="output" />
+	<Node group="[]" id="179" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="5" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(5)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="53" dst_node_input="b" src_node_id="179" src_node_output="output" />
+	<Edge dst_node_id="180" dst_node_input="input" src_node_id="179" src_node_output="output" />
+	<Node group="[]" id="180" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="13" dst_node_input="input" src_node_id="180" src_node_output="output" />
+	<Edge dst_node_id="181" dst_node_input="input" src_node_id="180" src_node_output="output" />
+	<Node group="[]" id="181" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="15" dst_node_input="input" src_node_id="181" src_node_output="output" />
+	<Edge dst_node_id="182" dst_node_input="input" src_node_id="181" src_node_output="output" />
+	<Node group="[]" id="182" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="61" dst_node_input="b" src_node_id="182" src_node_output="output" />
+	<Edge dst_node_id="183" dst_node_input="input" src_node_id="182" src_node_output="output" />
+	<Node group="[]" id="183" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="3" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(3)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="70" dst_node_input="b" src_node_id="183" src_node_output="output" />
+	<Edge dst_node_id="184" dst_node_input="input" src_node_id="183" src_node_output="output" />
+	<Node group="[]" id="184" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="3" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(3)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="78" dst_node_input="b" src_node_id="184" src_node_output="output" />
+	<Edge dst_node_id="185" dst_node_input="input" src_node_id="184" src_node_output="output" />
+	<Node group="[]" id="185" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="3" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(3)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="87" dst_node_input="b" src_node_id="185" src_node_output="output" />
+	<Edge dst_node_id="186" dst_node_input="input" src_node_id="185" src_node_output="output" />
+	<Node group="[]" id="186" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="238" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(238)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="10" dst_node_input="input" src_node_id="186" src_node_output="output" />
+	<Edge dst_node_id="11" dst_node_input="input" src_node_id="186" src_node_output="output" />
+	<Edge dst_node_id="12" dst_node_input="input" src_node_id="186" src_node_output="output" />
+	<Node group="[]" id="10" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeStreamOffset">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="-257" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>stream offset: -257</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:26)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="30" dst_node_input="a" src_node_id="10" src_node_output="output" />
+	<Node group="[]" id="30" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSub">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>-</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.sub(DFEVar.java:922)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:45)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="32" dst_node_input="a" src_node_id="30" src_node_output="result" />
+	<Edge dst_node_id="33" dst_node_input="a" src_node_id="30" src_node_output="result" />
+	<Edge dst_node_id="121" dst_node_input="input" src_node_id="30" src_node_output="result" />
+	<Node group="[]" id="204" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>{HWOffsetFix:32, 0, TWOSCOMPLEMENT}\n0x00000000; 0.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:45)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Value>00000000000000000000000000000000</Value>
+		<HexValue>0x00000000</HexValue>
+		<NumericValue>0.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="32" dst_node_input="b" src_node_id="204" src_node_output="value" />
+	<Node group="[]" id="32" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeLt">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&lt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:45)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="34" dst_node_input="sel" src_node_id="32" src_node_output="result" />
+	<Node group="[]" id="121" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="34" dst_node_input="option0" src_node_id="121" src_node_output="output" />
+	<Node group="[]" id="33" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeNeg">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>(-)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:45)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="34" dst_node_input="option1" src_node_id="33" src_node_output="result" />
+	<Node group="[]" id="34" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:45)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="35" dst_node_input="option0" src_node_id="34" src_node_output="result" />
+	<Node group="[]" id="112" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>{HWOffsetFix:32, 0, TWOSCOMPLEMENT}\n0x00000000; 0.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Constant.zero(Constant.java:442)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:43)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Value>00000000000000000000000000000000</Value>
+		<HexValue>0x00000000</HexValue>
+		<NumericValue>0.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="35" dst_node_input="option1" src_node_id="112" src_node_output="value" />
+	<Node group="[]" id="35" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.ternaryIf(DFEVar.java:1160)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:45)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="41" dst_node_input="a" src_node_id="35" src_node_output="result" />
+	<Edge dst_node_id="126" dst_node_input="input" src_node_id="35" src_node_output="result" />
+	<Node group="[]" id="11" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeStreamOffset">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="-256" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>stream offset: -256</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:27)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="36" dst_node_input="a" src_node_id="11" src_node_output="output" />
+	<Node group="[]" id="36" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSub">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>-</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.sub(DFEVar.java:922)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:46)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="38" dst_node_input="a" src_node_id="36" src_node_output="result" />
+	<Edge dst_node_id="39" dst_node_input="a" src_node_id="36" src_node_output="result" />
+	<Edge dst_node_id="124" dst_node_input="input" src_node_id="36" src_node_output="result" />
+	<Node group="[]" id="203" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>{HWOffsetFix:32, 0, TWOSCOMPLEMENT}\n0x00000000; 0.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:46)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Value>00000000000000000000000000000000</Value>
+		<HexValue>0x00000000</HexValue>
+		<NumericValue>0.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="38" dst_node_input="b" src_node_id="203" src_node_output="value" />
+	<Node group="[]" id="38" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeLt">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&lt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:46)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="40" dst_node_input="sel" src_node_id="38" src_node_output="result" />
+	<Node group="[]" id="124" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="40" dst_node_input="option0" src_node_id="124" src_node_output="output" />
+	<Node group="[]" id="39" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeNeg">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>(-)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:46)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="40" dst_node_input="option1" src_node_id="39" src_node_output="result" />
+	<Node group="[]" id="40" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:46)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="41" dst_node_input="b" src_node_id="40" src_node_output="result" />
+	<Edge dst_node_id="125" dst_node_input="input" src_node_id="40" src_node_output="result" />
+	<Node group="[]" id="41" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeGt">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&gt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.max(KernelMath.java:864)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:46)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="42" dst_node_input="sel" src_node_id="41" src_node_output="result" />
+	<Node group="[]" id="125" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="42" dst_node_input="option0" src_node_id="125" src_node_output="output" />
+	<Node group="[]" id="126" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="42" dst_node_input="option1" src_node_id="126" src_node_output="output" />
+	<Edge dst_node_id="187" dst_node_input="input" src_node_id="126" src_node_output="output" />
+	<Node group="[]" id="42" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.max(KernelMath.java:864)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:46)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="43" dst_node_input="option0" src_node_id="42" src_node_output="result" />
+	<Node group="[]" id="187" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="43" dst_node_input="option1" src_node_id="187" src_node_output="output" />
+	<Node group="[]" id="43" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.ternaryIf(DFEVar.java:1160)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:46)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="50" dst_node_input="a" src_node_id="43" src_node_output="result" />
+	<Edge dst_node_id="135" dst_node_input="input" src_node_id="43" src_node_output="result" />
+	<Node group="[]" id="12" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeStreamOffset">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="-255" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>stream offset: -255</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:28)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="45" dst_node_input="a" src_node_id="12" src_node_output="output" />
+	<Node group="[]" id="45" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSub">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>-</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.sub(DFEVar.java:922)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:47)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="131" dst_node_input="input" src_node_id="45" src_node_output="result" />
+	<Node group="[]" id="131" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="2" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(2)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="47" dst_node_input="a" src_node_id="131" src_node_output="output" />
+	<Edge dst_node_id="48" dst_node_input="a" src_node_id="131" src_node_output="output" />
+	<Edge dst_node_id="189" dst_node_input="input" src_node_id="131" src_node_output="output" />
+	<Node group="[]" id="202" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>{HWOffsetFix:32, 0, TWOSCOMPLEMENT}\n0x00000000; 0.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:47)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Value>00000000000000000000000000000000</Value>
+		<HexValue>0x00000000</HexValue>
+		<NumericValue>0.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="47" dst_node_input="b" src_node_id="202" src_node_output="value" />
+	<Node group="[]" id="47" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeLt">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&lt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:47)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="49" dst_node_input="sel" src_node_id="47" src_node_output="result" />
+	<Node group="[]" id="189" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="49" dst_node_input="option0" src_node_id="189" src_node_output="output" />
+	<Node group="[]" id="48" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeNeg">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>(-)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:47)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="49" dst_node_input="option1" src_node_id="48" src_node_output="result" />
+	<Node group="[]" id="49" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:47)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="50" dst_node_input="b" src_node_id="49" src_node_output="result" />
+	<Edge dst_node_id="134" dst_node_input="input" src_node_id="49" src_node_output="result" />
+	<Node group="[]" id="50" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeGt">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&gt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.max(KernelMath.java:864)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:47)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="51" dst_node_input="sel" src_node_id="50" src_node_output="result" />
+	<Node group="[]" id="134" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="51" dst_node_input="option0" src_node_id="134" src_node_output="output" />
+	<Node group="[]" id="135" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="51" dst_node_input="option1" src_node_id="135" src_node_output="output" />
+	<Edge dst_node_id="188" dst_node_input="input" src_node_id="135" src_node_output="output" />
+	<Node group="[]" id="51" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.max(KernelMath.java:864)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:47)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="52" dst_node_input="option0" src_node_id="51" src_node_output="result" />
+	<Node group="[]" id="188" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="52" dst_node_input="option1" src_node_id="188" src_node_output="output" />
+	<Node group="[]" id="52" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.ternaryIf(DFEVar.java:1160)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:47)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="58" dst_node_input="a" src_node_id="52" src_node_output="result" />
+	<Edge dst_node_id="142" dst_node_input="input" src_node_id="52" src_node_output="result" />
+	<Node group="[]" id="13" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeStreamOffset">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="-1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>stream offset: -1</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:30)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="53" dst_node_input="a" src_node_id="13" src_node_output="output" />
+	<Node group="[]" id="53" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSub">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>-</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.sub(DFEVar.java:922)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:49)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="55" dst_node_input="a" src_node_id="53" src_node_output="result" />
+	<Edge dst_node_id="56" dst_node_input="a" src_node_id="53" src_node_output="result" />
+	<Edge dst_node_id="140" dst_node_input="input" src_node_id="53" src_node_output="result" />
+	<Node group="[]" id="201" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>{HWOffsetFix:32, 0, TWOSCOMPLEMENT}\n0x00000000; 0.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:49)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Value>00000000000000000000000000000000</Value>
+		<HexValue>0x00000000</HexValue>
+		<NumericValue>0.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="55" dst_node_input="b" src_node_id="201" src_node_output="value" />
+	<Node group="[]" id="55" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeLt">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&lt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:49)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="57" dst_node_input="sel" src_node_id="55" src_node_output="result" />
+	<Node group="[]" id="140" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="57" dst_node_input="option0" src_node_id="140" src_node_output="output" />
+	<Node group="[]" id="56" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeNeg">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>(-)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:49)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="57" dst_node_input="option1" src_node_id="56" src_node_output="result" />
+	<Node group="[]" id="57" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:49)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="58" dst_node_input="b" src_node_id="57" src_node_output="result" />
+	<Edge dst_node_id="141" dst_node_input="input" src_node_id="57" src_node_output="result" />
+	<Node group="[]" id="58" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeGt">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&gt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.max(KernelMath.java:864)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:49)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="59" dst_node_input="sel" src_node_id="58" src_node_output="result" />
+	<Node group="[]" id="141" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="59" dst_node_input="option0" src_node_id="141" src_node_output="output" />
+	<Node group="[]" id="142" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="59" dst_node_input="option1" src_node_id="142" src_node_output="output" />
+	<Edge dst_node_id="190" dst_node_input="input" src_node_id="142" src_node_output="output" />
+	<Node group="[]" id="59" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.max(KernelMath.java:864)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:49)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="60" dst_node_input="option0" src_node_id="59" src_node_output="result" />
+	<Node group="[]" id="190" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="60" dst_node_input="option1" src_node_id="190" src_node_output="output" />
+	<Node group="[]" id="60" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.ternaryIf(DFEVar.java:1160)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:49)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="66" dst_node_input="a" src_node_id="60" src_node_output="result" />
+	<Edge dst_node_id="149" dst_node_input="input" src_node_id="60" src_node_output="result" />
+	<Node group="[]" id="15" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeStreamOffset">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>stream offset: 1</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:32)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="61" dst_node_input="a" src_node_id="15" src_node_output="output" />
+	<Node group="[]" id="61" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSub">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>-</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.sub(DFEVar.java:922)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:50)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="63" dst_node_input="a" src_node_id="61" src_node_output="result" />
+	<Edge dst_node_id="64" dst_node_input="a" src_node_id="61" src_node_output="result" />
+	<Edge dst_node_id="147" dst_node_input="input" src_node_id="61" src_node_output="result" />
+	<Node group="[]" id="200" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>{HWOffsetFix:32, 0, TWOSCOMPLEMENT}\n0x00000000; 0.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:50)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Value>00000000000000000000000000000000</Value>
+		<HexValue>0x00000000</HexValue>
+		<NumericValue>0.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="63" dst_node_input="b" src_node_id="200" src_node_output="value" />
+	<Node group="[]" id="63" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeLt">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&lt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:50)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="65" dst_node_input="sel" src_node_id="63" src_node_output="result" />
+	<Node group="[]" id="147" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="65" dst_node_input="option0" src_node_id="147" src_node_output="output" />
+	<Node group="[]" id="64" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeNeg">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>(-)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:50)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="65" dst_node_input="option1" src_node_id="64" src_node_output="result" />
+	<Node group="[]" id="65" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:50)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="66" dst_node_input="b" src_node_id="65" src_node_output="result" />
+	<Edge dst_node_id="148" dst_node_input="input" src_node_id="65" src_node_output="result" />
+	<Node group="[]" id="66" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeGt">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&gt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.max(KernelMath.java:864)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:50)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="67" dst_node_input="sel" src_node_id="66" src_node_output="result" />
+	<Node group="[]" id="148" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="67" dst_node_input="option0" src_node_id="148" src_node_output="output" />
+	<Node group="[]" id="149" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="67" dst_node_input="option1" src_node_id="149" src_node_output="output" />
+	<Edge dst_node_id="191" dst_node_input="input" src_node_id="149" src_node_output="output" />
+	<Node group="[]" id="67" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.max(KernelMath.java:864)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:50)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="68" dst_node_input="option0" src_node_id="67" src_node_output="result" />
+	<Node group="[]" id="191" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="68" dst_node_input="option1" src_node_id="191" src_node_output="output" />
+	<Node group="[]" id="68" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.ternaryIf(DFEVar.java:1160)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:50)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="75" dst_node_input="a" src_node_id="68" src_node_output="result" />
+	<Edge dst_node_id="155" dst_node_input="input" src_node_id="68" src_node_output="result" />
+	<Node group="[]" id="16" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeStreamOffset">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="255" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>stream offset: 255</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:34)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="70" dst_node_input="a" src_node_id="16" src_node_output="output" />
+	<Node group="[]" id="70" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSub">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>-</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.sub(DFEVar.java:922)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:52)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="72" dst_node_input="a" src_node_id="70" src_node_output="result" />
+	<Edge dst_node_id="73" dst_node_input="a" src_node_id="70" src_node_output="result" />
+	<Edge dst_node_id="153" dst_node_input="input" src_node_id="70" src_node_output="result" />
+	<Node group="[]" id="199" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>{HWOffsetFix:32, 0, TWOSCOMPLEMENT}\n0x00000000; 0.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:52)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Value>00000000000000000000000000000000</Value>
+		<HexValue>0x00000000</HexValue>
+		<NumericValue>0.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="72" dst_node_input="b" src_node_id="199" src_node_output="value" />
+	<Node group="[]" id="72" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeLt">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&lt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:52)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="74" dst_node_input="sel" src_node_id="72" src_node_output="result" />
+	<Node group="[]" id="153" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="74" dst_node_input="option0" src_node_id="153" src_node_output="output" />
+	<Node group="[]" id="73" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeNeg">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>(-)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:52)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="74" dst_node_input="option1" src_node_id="73" src_node_output="result" />
+	<Node group="[]" id="74" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:52)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="75" dst_node_input="b" src_node_id="74" src_node_output="result" />
+	<Edge dst_node_id="154" dst_node_input="input" src_node_id="74" src_node_output="result" />
+	<Node group="[]" id="75" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeGt">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&gt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.max(KernelMath.java:864)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:52)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="76" dst_node_input="sel" src_node_id="75" src_node_output="result" />
+	<Node group="[]" id="154" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="76" dst_node_input="option0" src_node_id="154" src_node_output="output" />
+	<Node group="[]" id="155" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="76" dst_node_input="option1" src_node_id="155" src_node_output="output" />
+	<Edge dst_node_id="192" dst_node_input="input" src_node_id="155" src_node_output="output" />
+	<Node group="[]" id="76" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.max(KernelMath.java:864)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:52)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="77" dst_node_input="option0" src_node_id="76" src_node_output="result" />
+	<Node group="[]" id="192" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="77" dst_node_input="option1" src_node_id="192" src_node_output="output" />
+	<Node group="[]" id="77" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.ternaryIf(DFEVar.java:1160)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:52)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="83" dst_node_input="a" src_node_id="77" src_node_output="result" />
+	<Edge dst_node_id="162" dst_node_input="input" src_node_id="77" src_node_output="result" />
+	<Node group="[]" id="17" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeStreamOffset">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="256" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>stream offset: 256</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:35)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="78" dst_node_input="a" src_node_id="17" src_node_output="output" />
+	<Node group="[]" id="78" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSub">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>-</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.sub(DFEVar.java:922)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:53)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="80" dst_node_input="a" src_node_id="78" src_node_output="result" />
+	<Edge dst_node_id="81" dst_node_input="a" src_node_id="78" src_node_output="result" />
+	<Edge dst_node_id="160" dst_node_input="input" src_node_id="78" src_node_output="result" />
+	<Node group="[]" id="198" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>{HWOffsetFix:32, 0, TWOSCOMPLEMENT}\n0x00000000; 0.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:53)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Value>00000000000000000000000000000000</Value>
+		<HexValue>0x00000000</HexValue>
+		<NumericValue>0.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="80" dst_node_input="b" src_node_id="198" src_node_output="value" />
+	<Node group="[]" id="80" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeLt">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&lt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:53)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="82" dst_node_input="sel" src_node_id="80" src_node_output="result" />
+	<Node group="[]" id="160" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="82" dst_node_input="option0" src_node_id="160" src_node_output="output" />
+	<Node group="[]" id="81" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeNeg">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>(-)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:53)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="82" dst_node_input="option1" src_node_id="81" src_node_output="result" />
+	<Node group="[]" id="82" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:53)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="83" dst_node_input="b" src_node_id="82" src_node_output="result" />
+	<Edge dst_node_id="161" dst_node_input="input" src_node_id="82" src_node_output="result" />
+	<Node group="[]" id="83" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeGt">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&gt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.max(KernelMath.java:864)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:53)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="84" dst_node_input="sel" src_node_id="83" src_node_output="result" />
+	<Node group="[]" id="161" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="84" dst_node_input="option0" src_node_id="161" src_node_output="output" />
+	<Node group="[]" id="162" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="84" dst_node_input="option1" src_node_id="162" src_node_output="output" />
+	<Edge dst_node_id="193" dst_node_input="input" src_node_id="162" src_node_output="output" />
+	<Node group="[]" id="84" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.max(KernelMath.java:864)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:53)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="85" dst_node_input="option0" src_node_id="84" src_node_output="result" />
+	<Node group="[]" id="193" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="85" dst_node_input="option1" src_node_id="193" src_node_output="output" />
+	<Node group="[]" id="85" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.ternaryIf(DFEVar.java:1160)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:53)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="92" dst_node_input="a" src_node_id="85" src_node_output="result" />
+	<Edge dst_node_id="169" dst_node_input="input" src_node_id="85" src_node_output="result" />
+	<Node group="[]" id="18" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeStreamOffset">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="257" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>stream offset: 257</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.Stream.offset(Stream.java:225)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:36)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="87" dst_node_input="a" src_node_id="18" src_node_output="output" />
+	<Node group="[]" id="87" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeSub">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>-</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.sub(DFEVar.java:922)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:54)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="89" dst_node_input="a" src_node_id="87" src_node_output="result" />
+	<Edge dst_node_id="90" dst_node_input="a" src_node_id="87" src_node_output="result" />
+	<Edge dst_node_id="167" dst_node_input="input" src_node_id="87" src_node_output="result" />
+	<Node group="[]" id="197" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>{HWOffsetFix:32, 0, TWOSCOMPLEMENT}\n0x00000000; 0.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:54)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Value>00000000000000000000000000000000</Value>
+		<HexValue>0x00000000</HexValue>
+		<NumericValue>0.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="89" dst_node_input="b" src_node_id="197" src_node_output="value" />
+	<Node group="[]" id="89" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeLt">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&lt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:54)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="91" dst_node_input="sel" src_node_id="89" src_node_output="result" />
+	<Node group="[]" id="167" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="91" dst_node_input="option0" src_node_id="167" src_node_output="output" />
+	<Node group="[]" id="90" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeNeg">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>(-)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:54)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="91" dst_node_input="option1" src_node_id="90" src_node_output="result" />
+	<Node group="[]" id="91" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.abs(KernelMath.java:328)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:54)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="92" dst_node_input="b" src_node_id="91" src_node_output="result" />
+	<Edge dst_node_id="168" dst_node_input="input" src_node_id="91" src_node_output="result" />
+	<Node group="[]" id="92" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeGt">
+		<Input name="a" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="b" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>&gt;</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.max(KernelMath.java:864)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:54)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="93" dst_node_input="sel" src_node_id="92" src_node_output="result" />
+	<Node group="[]" id="168" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="93" dst_node_input="option0" src_node_id="168" src_node_output="output" />
+	<Node group="[]" id="169" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="93" dst_node_input="option1" src_node_id="169" src_node_output="output" />
+	<Edge dst_node_id="194" dst_node_input="input" src_node_id="169" src_node_output="output" />
+	<Node group="[]" id="93" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath.max(KernelMath.java:864)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:54)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="94" dst_node_input="option0" src_node_id="93" src_node_output="result" />
+	<Node group="[]" id="194" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeFIFO">
+		<Input name="input" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>FIFO(1)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="94" dst_node_input="option1" src_node_id="194" src_node_output="output" />
+	<Node group="[]" id="94" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeMux">
+		<Input name="sel" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="option0" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Input name="option1" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>MUX</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar.ternaryIf(DFEVar.java:1160)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:54)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="99" dst_node_input="data" src_node_id="94" src_node_output="result" />
+	<Node group="[]" id="99" isControl="false" isVisible="true" pipelineFactor="1.0" type="NodeOutput">
+		<Input name="output_control" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="data" type="dfeOffsetFix(32, 0, TWOSCOMPLEMENT)" />
+		<Text>Output(outImage)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.IO.output(IO.java:816)
+differenceoperator.DifferenceOperatorKernel.&lt;init&gt;(DifferenceOperatorKernel.maxj:56)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:12)</OriginStackTrace>
+		<Name>outImage</Name>
+	</Node>
+	<Node group="[]" id="104" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:1, 0, UNSIGNED}\n0x1; 1.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+		<Value>1</Value>
+		<HexValue>0x1</HexValue>
+		<NumericValue>1.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="105" dst_node_input="load" src_node_id="104" src_node_output="value" />
+	<Node group="[]" id="196" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:1, 0, UNSIGNED}\n0x1; 1.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+		<Value>1</Value>
+		<HexValue>0x1</HexValue>
+		<NumericValue>1.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="102" dst_node_input="enable" src_node_id="196" src_node_output="value" />
+	<Node group="[]" id="101" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(49, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:49, 0, UNSIGNED}\n0x1000000000000; 2.81474976710656E14</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+		<Value>1000000000000000000000000000000000000000000000000</Value>
+		<HexValue>0x1000000000000</HexValue>
+		<NumericValue>2.81474976710656E14</NumericValue>
+	</Node>
+	<Edge dst_node_id="102" dst_node_input="max" src_node_id="101" src_node_output="value" />
+	<Node group="[]" id="102" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeCounterV1">
+		<Input name="enable" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="max" type="dfeOffsetFix(49, 0, UNSIGNED)" />
+		<Output latency="0" name="count" type="dfeOffsetFix(48, 0, UNSIGNED)" />
+		<Output latency="0" name="wrap" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Counter(NUMERIC_INCREMENTING)\nInc: 1\nReset: 0\nInit: 0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+		<Increment>1</Increment>
+		<WrapValue>0</WrapValue>
+		<InitValue>0</InitValue>
+		<CountMode>NUMERIC_INCREMENTING</CountMode>
+		<WrapMode>COUNT_LT_MAX_THEN_WRAP</WrapMode>
+	</Node>
+	<Edge dst_node_id="103" dst_node_input="input" src_node_id="102" src_node_output="count" />
+	<Node group="[]" id="103" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeStreamOffset">
+		<Input name="input" type="dfeOffsetFix(48, 0, UNSIGNED)" />
+		<Output latency="1" name="output" type="dfeOffsetFix(48, 0, UNSIGNED)" />
+		<Text>stream offset: 1</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="105" dst_node_input="data" src_node_id="103" src_node_output="output" />
+	<Node group="[]" id="105" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeOutputMappedReg">
+		<Input name="load" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="data" type="dfeOffsetFix(48, 0, UNSIGNED)" />
+		<Text>Scalar output (current_run_cycle_count)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+		<Name>current_run_cycle_count</Name>
+	</Node>
+	<Node group="[]" id="195" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:1, 0, UNSIGNED}\n0x1; 1.0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+		<Value>1</Value>
+		<HexValue>0x1</HexValue>
+		<NumericValue>1.0</NumericValue>
+	</Node>
+	<Edge dst_node_id="108" dst_node_input="enable" src_node_id="195" src_node_output="value" />
+	<Node group="[]" id="107" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeConstantRawBits">
+		<Output latency="0" name="value" type="dfeOffsetFix(49, 0, UNSIGNED)" />
+		<Text>{HWOffsetFix:49, 0, UNSIGNED}\n0x1000000000000; 2.81474976710656E14</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+		<Value>1000000000000000000000000000000000000000000000000</Value>
+		<HexValue>0x1000000000000</HexValue>
+		<NumericValue>2.81474976710656E14</NumericValue>
+	</Node>
+	<Edge dst_node_id="108" dst_node_input="max" src_node_id="107" src_node_output="value" />
+	<Node group="[]" id="108" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeCounterV1">
+		<Input name="enable" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Input name="max" type="dfeOffsetFix(49, 0, UNSIGNED)" />
+		<Output latency="0" name="count" type="dfeOffsetFix(48, 0, UNSIGNED)" />
+		<Output latency="0" name="wrap" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>Counter(NUMERIC_INCREMENTING)\nInc: 1\nReset: 0\nInit: 0</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+		<Increment>1</Increment>
+		<WrapValue>0</WrapValue>
+		<InitValue>0</InitValue>
+		<CountMode>NUMERIC_INCREMENTING</CountMode>
+		<WrapMode>COUNT_LT_MAX_THEN_WRAP</WrapMode>
+	</Node>
+	<Edge dst_node_id="111" dst_node_input="a" src_node_id="108" src_node_output="count" />
+	<Node group="[]" id="110" isControl="true" isVisible="false" pipelineFactor="1.0" type="NodeInputMappedReg">
+		<Output latency="0" name="run_cycle_count" type="dfeOffsetFix(48, 0, UNSIGNED)" />
+		<Text>Scalar input (run_cycle_count)</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+		<Name>run_cycle_count</Name>
+	</Node>
+	<Edge dst_node_id="111" dst_node_input="b" src_node_id="110" src_node_output="run_cycle_count" />
+	<Node group="[]" id="111" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeEq">
+		<Input name="a" type="dfeOffsetFix(48, 0, UNSIGNED)" />
+		<Input name="b" type="dfeOffsetFix(48, 0, UNSIGNED)" />
+		<Output latency="1" name="result" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>==</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+	<Edge dst_node_id="109" dst_node_input="start" src_node_id="111" src_node_output="result" />
+	<Node group="[]" id="109" isControl="false" isVisible="false" pipelineFactor="1.0" type="NodeFlush">
+		<Input name="start" type="dfeOffsetFix(1, 0, UNSIGNED)" />
+		<Text>flush on trigger</Text>
+		<OriginStackTrace>com.maxeler.maxcompiler.v2.managers.DFEManager.build(DFEManager.java:373)
+differenceoperator.DifferenceOperatorManager.main(DifferenceOperatorManager.maxj:15)</OriginStackTrace>
+	</Node>
+</Graph>

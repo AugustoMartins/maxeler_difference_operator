@@ -1,0 +1,58 @@
+package differenceoperator;
+
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.KernelMath;
+import com.maxeler.maxcompiler.v2.kernelcompiler.stdlib.core.CounterChain;
+
+class DifferenceOperatorKernel extends Kernel {
+
+    int width = 256;
+    int height = 256;
+    
+    DFEType TYPE = dfeInt(32);
+
+	DifferenceOperatorKernel(KernelParameters parameters) {
+		super(parameters);
+
+		DFEVar inImage = io.input("inImage", TYPE);
+
+        CounterChain chain = control.count.makeCounterChain();
+        DFEVar c = chain.addCounter(width, 1).cast(dfeInt(32));
+        DFEVar l = chain.addCounter(height, 1).cast(dfeInt(32));
+        
+        DFEVar upLeft  = stream.offset(inImage, -(width + 1));
+        DFEVar up      = stream.offset(inImage, - width);
+        DFEVar upRight = stream.offset(inImage, -(width - 1));
+
+        DFEVar left  = stream.offset(inImage, -1);
+        DFEVar point = stream.offset(inImage,  0);
+        DFEVar right = stream.offset(inImage,  1);
+
+        DFEVar downLeft  = stream.offset(inImage, width - 1);
+        DFEVar down      = stream.offset(inImage, width);
+        DFEVar downRight = stream.offset(inImage, width + 1);
+
+        DFEVar firstLine = l === 0;
+        DFEVar lastLine  = l === (height - 1);
+        DFEVar firstCol  = c === 0;
+        DFEVar lastCol   = c === (width - 1);
+
+        DFEVar max = constant.zero(TYPE);
+
+        max = (firstLine | firstCol) ? max : KernelMath.abs(upLeft - point);
+        max =  firstLine             ? max : KernelMath.max(max, KernelMath.abs(up - point));
+        max = (firstLine | lastCol)  ? max : KernelMath.max(max, KernelMath.abs(upRight - point));
+
+        max = firstCol ? max : KernelMath.max(max, KernelMath.abs(left - point));
+        max = lastCol  ? max : KernelMath.max(max, KernelMath.abs(right - point));
+
+        max = (lastLine | firstCol) ? max : KernelMath.max(max, KernelMath.abs(downLeft - point));
+        max =  lastLine             ? max : KernelMath.max(max, KernelMath.abs(down - point));
+        max = (lastLine | lastCol)  ? max : KernelMath.max(max, KernelMath.abs(downRight - point));
+
+        io.output("outImage", max, TYPE);
+	}
+}

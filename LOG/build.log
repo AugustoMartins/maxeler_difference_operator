@@ -1,0 +1,170 @@
+cat: /opt/quartus/licenses/Altera_1G_10G_MAC_maxtest09.dat: No such file or directory
+RTNETLINK answers: Operation not permitted
+SIOCSIFHWADDR: Operation not permitted
+RTNETLINK answers: Operation not permitted
+Usage:
+  ifconfig [-a] [-v] [-s] <interface> [[<AF>] <address>]
+  [add <address>[/<prefixlen>]]
+  [del <address>[/<prefixlen>]]
+  [[-]broadcast [<address>]]  [[-]pointopoint [<address>]]
+  [netmask <address>]  [dstaddr <address>]  [tunnel <address>]
+  [outfill <NN>] [keepalive <NN>]
+  [hw <HW> <address>]  [metric <NN>]  [mtu <NN>]
+  [[-]trailers]  [[-]arp]  [[-]allmulti]
+  [multicast]  [[-]promisc]
+  [mem_start <NN>]  [io_addr <NN>]  [irq <NN>]  [media <type>]
+  [txqueuelen <NN>]
+  [[-]dynamic]
+  [up|down] ...
+
+  <HW>=Hardware Type.
+  List of possible hardware types:
+    loop (Local Loopback) slip (Serial Line IP) cslip (VJ Serial Line IP) 
+    slip6 (6-bit Serial Line IP) cslip6 (VJ 6-bit Serial Line IP) adaptive (Adaptive Serial Line IP) 
+    strip (Metricom Starmode IP) ash (Ash) ether (Ethernet) 
+    tr (16/4 Mbps Token Ring) tr (16/4 Mbps Token Ring (New)) ax25 (AMPR AX.25) 
+    netrom (AMPR NET/ROM) rose (AMPR ROSE) tunnel (IPIP Tunnel) 
+    ppp (Point-to-Point Protocol) hdlc ((Cisco)-HDLC) lapb (LAPB) 
+    arcnet (ARCnet) dlci (Frame Relay DLCI) frad (Frame Relay Access Device) 
+    sit (IPv6-in-IPv4) fddi (Fiber Distributed Data Interface) hippi (HIPPI) 
+    irda (IrLAP) ec (Econet) x25 (generic X.25) 
+    infiniband (InfiniBand) 
+  <AF>=Address family. Default: inet
+  List of possible address families:
+    unix (UNIX Domain) inet (DARPA Internet) inet6 (IPv6) 
+    ax25 (AMPR AX.25) netrom (AMPR NET/ROM) rose (AMPR ROSE) 
+    ipx (Novell IPX) ddp (Appletalk DDP) ec (Econet) 
+    ash (Ash) x25 (CCITT X.25) 
+make: Entering directory `/home/a01656520/WebIDE-Projects/DifferenceOperator/CPUCode'
+make -C ../RunRules/Simulation maxfiles/DifferenceOperator.max
+make[1]: Entering directory `/home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation'
+
+MaxCompiler Project Admin Tool Version 2015.2.00001
+ Copyright Maxeler Technologies 2010 - 2015. All rights reserved.
+
+Handler version 2
+Updating RunRule dependent Makefiles for RunRule 'Simulation'
+	Updating: Simulation
+Found makefiles: 1
+	Updated: Simulation
+make -f Makefile.rules maxfiles/DifferenceOperator.max
+make[2]: Entering directory `/home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation'
+env  MAX_BUILDPARAMS=" DFEModel=VECTIS  target=DFE_SIM  maxFileName=DifferenceOperator "  ant -v -f DifferenceOperator.xml
+Apache Ant version 1.7.1 compiled on August 24 2010
+Buildfile: DifferenceOperator.xml
+Detected Java version: 1.6 in: /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.38.x86_64/jre
+Detected OS: Linux
+parsing buildfile /home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation/DifferenceOperator.xml with URI = file:/home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation/DifferenceOperator.xml
+Project base dir set to: /home/a01656520/WebIDE-Projects/DifferenceOperator/EngineCode
+[antlib:org.apache.tools.ant] Could not load definitions from resource org/apache/tools/ant/antlib.xml. It could not be found.
+ [property] Loading Environment env.
+Property "-*-command-variables-*-" has not been set
+Property "env.MAXCOMPILERJCP" has not been set
+Build sequence for target(s) `all' is [build, run, runresult, all]
+Complete build sequence is [build, run, runresult, all, help, clean, jar, ]
+
+build:
+Detected Java version: 1.6 in: /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.38.x86_64/jre
+Detected OS: Linux
+      [ant] calling target(s) [default] in build file /home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation/DifferenceOperator_Build.xml
+parsing buildfile /home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation/DifferenceOperator_Build.xml with URI = file:/home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation/DifferenceOperator_Build.xml
+Project base dir set to: /home/a01656520/WebIDE-Projects/DifferenceOperator/EngineCode
+ [property] Loading Environment env.
+Property "-*-command-variables-*-" has not been set
+Property "env.MAXCOMPILERJCP" has not been set
+      [ant] Entering /home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation/DifferenceOperator_Build.xml...
+Build sequence for target(s) `all' is [clean, build, all]
+Complete build sequence is [clean, build, all, ]
+
+clean:
+   [delete] Deleting directory /home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation/dist
+   [delete] Deleting /home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation/dist/bin/differenceoperator/DifferenceOperatorKernel.class
+   [delete] Deleting /home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation/dist/bin/differenceoperator/DifferenceOperatorManager.class
+   [delete] Deleting directory /home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation/dist/bin/differenceoperator
+   [delete] Deleting directory /home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation/dist/bin
+   [delete] Deleting directory /home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation/dist
+
+build:
+    [mkdir] Created dir: /home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation/dist
+    [mkdir] Created dir: /home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation/dist/bin
+     [copy] No sources found.
+[maxjcompiler] 
+[maxjcompiler] 
+[maxjcompiler] Compiling to folder /home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation/dist/bin
+[maxjcompiler] 
+[maxjcompiler] Compiling files and folders:
+[maxjcompiler] /home/a01656520/WebIDE-Projects/DifferenceOperator/EngineCode/src
+[maxjcompiler] 
+[maxjcompiler] Compiler options:
+[maxjcompiler] -noExit
+[maxjcompiler] -classpath
+[maxjcompiler] /opt/maxcompiler/lib/MaxCompiler.jar
+[maxjcompiler] -d
+[maxjcompiler] /home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation/dist/bin
+
+all:
+      [ant] Exiting /home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation/DifferenceOperator_Build.xml.
+
+run:
+     [java] Executing '/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.38.x86_64/jre/bin/java' with arguments:
+     [java] '-Xmx2048m'
+     [java] '-classpath'
+     [java] '/home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation/dist/bin:/opt/maxcompiler/lib/MaxCompiler.jar'
+     [java] 'differenceoperator.DifferenceOperatorManager'
+     [java] 
+     [java] The ' characters around the executable and arguments are
+     [java] not part of the command.
+     [java] Setting environment variable: MAXSOURCEDIRS=src
+     [java] Fri 09:30: MaxCompiler version: 2015.2
+     [java] Fri 09:30: Build "DifferenceOperator" start time: Fri Jun 15 09:30:37 UTC 2018
+     [java] Fri 09:30: Main build process running as user a01656520 on host d5c9463c5c97
+     [java] Fri 09:30: Build location: /tmp/DifferenceOperator_VECTIS_DFE_SIM
+     [java] Fri 09:30: Detailed build log available in "_build.log"
+     [java] Fri 09:30: Instantiating manager
+     [java] Fri 09:30: Instantiating kernel "DifferenceOperatorKernel"
+     [java] Fri 09:30: Compiling manager (CPU I/O Only)
+     [java] Fri 09:30: 
+     [java] Fri 09:30: Compiling kernel "DifferenceOperatorKernel"
+     [java] Fri 09:30: Running back-end simulation build (3 phases)
+     [java] Fri 09:30: (1/3) - Prepare MaxFile Data (GenerateMaxFileDataFile)
+     [java] Fri 09:30: (2/3) - Compile Simulation Modules (SimCompilePass)
+     [java] Fri 09:30: (3/3) - Generate MaxFile (AddSimObjectToMaxFilePass)
+     [java] Fri 09:30: MaxFile: /tmp/DifferenceOperator_VECTIS_DFE_SIM/results/DifferenceOperator.max (MD5Sum: bb95a8a1de37037469471a8bacd504f6)
+     [java] Fri 09:30: Build completed: Fri Jun 15 09:30:45 UTC 2018 (took 8 secs)
+     [exec] Current OS is Linux
+     [exec] Executing '/opt/maxcompiler//lib/MaxIDE/copyBuildResults.sh' with arguments:
+     [exec] '-p'
+     [exec] 'Simulation'
+     [exec] 
+     [exec] The ' characters around the executable and arguments are
+     [exec] not part of the command.
+
+runresult:
+     [echo] Checking java run result: exit status = 0
+
+all:
+
+BUILD SUCCESSFUL
+Total time: 9 seconds
+make[2]: Leaving directory `/home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation'
+make[1]: Leaving directory `/home/a01656520/WebIDE-Projects/DifferenceOperator/RunRules/Simulation'
+make -f Makefile.rules build
+make[1]: Entering directory `/home/a01656520/WebIDE-Projects/DifferenceOperator/CPUCode'
+set -e; rm -f ../RunRules/Simulation/objects/c/DifferenceOperatorCpuCode.d ;                                                             \
+	  cc -M -std=gnu99 -g -O3 -Wall -Wextra -I../RunRules/Simulation/include  -I '/opt/maxcompiler//include/slic'  -Wno-error DifferenceOperatorCpuCode.c > ../RunRules/Simulation/objects/c/DifferenceOperatorCpuCode.d.$$ ;                                 \
+      sed 's,\(DifferenceOperatorCpuCode\)\.o[ :]*,../RunRules/Simulation/objects/c/\1.o ../RunRules/Simulation/objects/c/DifferenceOperatorCpuCode.d : ,g' < ../RunRules/Simulation/objects/c/DifferenceOperatorCpuCode.d.$$ > ../RunRules/Simulation/objects/c/DifferenceOperatorCpuCode.d; \
+      rm -f ../RunRules/Simulation/objects/c/DifferenceOperatorCpuCode.d.$$
+make[1]: Leaving directory `/home/a01656520/WebIDE-Projects/DifferenceOperator/CPUCode'
+make[1]: Entering directory `/home/a01656520/WebIDE-Projects/DifferenceOperator/CPUCode'
+"/opt/maxcompiler//bin/sliccompile" ../RunRules/Simulation/maxfiles/DifferenceOperator.max ../RunRules/Simulation/objects/maxfiles/slic_DifferenceOperator.o
+Processing maxfile for VECTIS_SIM from '../RunRules/Simulation/maxfiles/DifferenceOperator.max'.
+/opt/maxcompiler//lib/clang/bin/start.sh clang -fgnu89-inline -pipe -O0 -std=gnu99 -Wall -Werror -frandom-seed=foo -Wno-unused-variable -Wno-unused-function -fPIC -I /opt/maxcompiler/include/slic -DMAXFILE_INC="/dev/null" -DSLIC_NO_DESTRUCTORS -c /tmp/sliccompile_1208580463704204871/cobject/max_5461188143393642055.c -o /tmp/sliccompile_1208580463704204871/cobject/max_5461188143393642055.c.o 
+/opt/maxcompiler//lib/clang/bin/start.sh clang -fgnu89-inline -pipe -O0 -std=gnu99 -Wall -Werror -frandom-seed=foo -Wno-unused-variable -Wno-unused-function -fPIC -I /opt/maxcompiler/include/slic -DMAXFILE_INC="/home/a01656520/WebIDE-Projects/DifferenceOperator/CPUCode/../RunRules/Simulation/maxfiles/DifferenceOperator.max" -DSLIC_NO_DESTRUCTORS -c /opt/maxcompiler/src/slicinterface/MaxFileInit.c -o max_19272732521174683.o 
+ld -r /tmp/sliccompile_1208580463704204871/cobject/max_5461188143393642055.c.o max_19272732521174683.o -o slic_DifferenceOperator.o 
+Copying .max file C object into '/home/a01656520/WebIDE-Projects/DifferenceOperator/CPUCode/../RunRules/Simulation/objects/maxfiles'
+cc -std=gnu99 -g -O3 -Wall -Wextra -I../RunRules/Simulation/include  -I '/opt/maxcompiler//include/slic'  -c DifferenceOperatorCpuCode.c -o ../RunRules/Simulation/objects/c/DifferenceOperatorCpuCode.o
+cc -std=gnu99 -g -O3 -Wall -Wextra -I../RunRules/Simulation/include  -I '/opt/maxcompiler//include/slic'  -o ../RunRules/Simulation/binaries/DifferenceOperator ../RunRules/Simulation/objects/maxfiles/slic_DifferenceOperator.o ../RunRules/Simulation/objects/c/DifferenceOperatorCpuCode.o ../RunRules/Simulation/objects/c/ppmIO.o -g -O3  -L '/opt/maxcompiler//lib' -lslic -L '/opt/maxcompiler//lib/maxeleros-sim/lib' -lmaxeleros -lpthread -lm -lrt 
+make[1]: Leaving directory `/home/a01656520/WebIDE-Projects/DifferenceOperator/CPUCode'
+make: Leaving directory `/home/a01656520/WebIDE-Projects/DifferenceOperator/CPUCode'
+Starting generating graphs...
+Graphs generated
