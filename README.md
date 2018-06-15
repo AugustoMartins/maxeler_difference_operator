@@ -1,4 +1,4 @@
-# Difference Operator to the Maxeler accelerator
+# Difference Operator to the Maxeler Accelerator
 <img src="https://github.com/AugustoMartins/maxeler_difference_operator/raw/master/APP/CPUCode/lena_difference.png">
 
 ## Description
